@@ -1,0 +1,1 @@
+Crie um sistema que gere diferentes tipos de documentos (PDF e Word). O sistema deve ser capaz de criar um documento sem saber exatamente qual tipo de documento está sendo criado.

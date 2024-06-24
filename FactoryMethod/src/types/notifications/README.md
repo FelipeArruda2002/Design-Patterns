@@ -1,0 +1,1 @@
+Crie um sistema que gere diferentes tipos de notificações (Email e SMS). O sistema deve ser capaz de criar uma notificação sem saber exatamente qual tipo de notificação está sendo criada.

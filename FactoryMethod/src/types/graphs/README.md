@@ -1,0 +1,1 @@
+Crie um sistema que gere diferentes tipos de gráficos (Barras e Linhas). O sistema deve ser capaz de criar um gráfico sem saber exatamente qual tipo de gráfico está sendo criado. Além disso, cada tipo de gráfico deve ter a capacidade de adicionar dados e renderizar o gráfico.
