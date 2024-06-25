@@ -1,6 +1,9 @@
 package types.documents;
 
-public class PDFDocument {
+/**
+ * Concrete product: PDF
+ */
+public class PDFDocument implements Document {
 
 	public String create() {
 		return "PDF Document Created";

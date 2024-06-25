@@ -3,11 +3,16 @@ package types.documents;
 public class DocumentClient {
 
 	public static void main(String[] args) {
-		PDFDocument pdfDocument = new PDFDocument();
-		System.out.println(pdfDocument.create());
-
-		WordDocument wordDocument = new WordDocument();
-		System.out.println(wordDocument.create());
+		DocumentFactory factory;
+		Document document;
+		
+		factory = new CreatorPDF();
+		document = factory.createDocument();
+		System.out.println(document.create());
+		
+		factory = new CreatorWord();
+		document = factory.createDocument();
+		System.out.println(document.create());
 	}
-
+	
 }
