@@ -3,11 +3,17 @@ package types.notifications;
 public class NotificationClient {
 
 	public static void main(String[] args) {
-		EmailNotification emailNotification = new EmailNotification();
-		emailNotification.notifyUser();
+		NotificationFactory factory;
+		Notification notification;
 
-		SMSNotification smsNotification = new SMSNotification();
-		smsNotification.notifyUser();
+		factory = new SMSCreator();
+		notification = factory.createNotification();
+		notification.notifyUser();
+		
+		factory = new EmailCreator();
+		notification = factory.createNotification();
+		notification.notifyUser();
+		
 	}
 
 }
