@@ -6,14 +6,18 @@ public class ChartClient {
 	
 	public static void main(String[] args) {
         List<Integer> data = List.of(1, 2, 3, 4, 5);
+        Chart chart;
+        ChartCreator chartCreator;
+        
+        chartCreator = new BarChartCreator();
+        chart = chartCreator.createChart();
+        chart.addData(data);
+        chart.render();
 
-        BarChart barChart = new BarChart();
-        barChart.addData(data);
-        barChart.render();
-
-        LineChart lineChart = new LineChart();
-        lineChart.addData(data);
-        lineChart.render();
+        chartCreator = new LineChartCreator();
+        chart = chartCreator.createChart();
+        chart.addData(data);
+        chart.render();
     }
 
 }

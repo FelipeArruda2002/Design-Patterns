@@ -1,17 +1,10 @@
 package types.graphs;
 
-import java.util.List;
+public class BarChart extends Chart {
 
-public class BarChart {
-
-	private List<Integer> data;
-
-	public void addData(List<Integer> data) {
-		this.data = data;
-	}
-
+	@Override
 	public void render() {
-		System.out.println("Rendering Bar Chart with data: " + data);
+		System.out.println("Rendering Bar Chart with data: " + getData());
 	}
 
 }
