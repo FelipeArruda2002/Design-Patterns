@@ -1,0 +1,1 @@
+Implemente uma classe base Personagem com atributos como nome, nível e habilidades. Crie subclasses como Guerreiro, Mago e Arqueiro que estendem Personagem. Implemente o método clone para cada classe, permitindo a clonagem de personagens. Teste a clonagem de personagens e verifique se os atributos dos clones são idênticos aos dos originais.
