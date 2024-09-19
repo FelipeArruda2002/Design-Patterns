@@ -1,0 +1,17 @@
+## Exercício: Implementação de um Adapter para Adicionar Funcionalidade a Várias Subclasses
+
+### Cenário:
+Você está desenvolvendo um sistema que lida com diferentes tipos de **Documentos** em uma aplicação de gestão de arquivos. Esses documentos são representados por classes que implementam uma interface **Documento**, que contém um método `abrir()`. Cada tipo de documento tem a sua forma específica de abrir o arquivo.
+
+No entanto, você foi informado que agora será necessário adicionar uma funcionalidade comum para todos os documentos: o **envio do documento por e-mail**. 
+
+Como você tem muitas subclasses de **Documento**, não é viável modificar todas elas para incluir essa funcionalidade. Utilizando o padrão Adapter, você deve criar um **Adaptador de Documento** para encapsular os objetos já existentes e fornecer a funcionalidade de envio por e-mail sem alterar as classes existentes.
+
+### Requisitos:
+1. **Interface Documento**: Já existe uma interface `Documento` com o método `abrir()`.
+2. **Classes de Documentos Existentes**:
+   - **PDFDocumento**: Classe que representa documentos PDF.
+   - **WordDocumento**: Classe que representa documentos do Word.
+   Essas classes implementam a interface `Documento`, mas nenhuma delas possui a funcionalidade de envio por e-mail.
+3. **Funcionalidade de Envio por E-mail**: Você deve implementar essa funcionalidade em um adaptador, sem modificar as classes existentes.
+```
