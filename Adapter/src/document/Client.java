@@ -6,8 +6,11 @@ public class Client {
 		Documento pdf = new PDFDocumento();
 		Documento word = new WordDocumento();
 		
-		pdf.abrir();
-		word.abrir();
+		AdaptadorDocumentoEmail pdfEnviarPorEmail = new AdaptadorDocumentoEmail(pdf);
+		AdaptadorDocumentoEmail wordEnviarPorEmail = new AdaptadorDocumentoEmail(word);
+		
+		pdfEnviarPorEmail.enviarEmail();
+		wordEnviarPorEmail.enviarEmail();
 	}
 }
 
