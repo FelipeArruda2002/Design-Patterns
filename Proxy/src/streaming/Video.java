@@ -9,10 +9,9 @@ public class Video {
 	public Video(String title, String url) {
 		this.title = title;
 		this.url = url;
-		loadVideo();
 	}
 
-	private void loadVideo() {
+	protected void loadVideo() {
 		System.out.println("Loading video from URL: " + url);
 		// Simulação de uma operação custosa de carregamento
 		try {
