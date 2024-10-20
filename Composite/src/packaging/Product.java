@@ -1,6 +1,6 @@
 package packaging;
 
-public class Product {
+public class Product implements OrderItem {
 	
 	private String name;
 	private double price;
@@ -10,6 +10,7 @@ public class Product {
 		this.price = price;
 	}
 
+	@Override
 	public double getPrice() {
 		return this.price;
 	}
