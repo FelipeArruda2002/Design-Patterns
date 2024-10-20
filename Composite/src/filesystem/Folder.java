@@ -4,50 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Classe para representar uma pasta
-public class Folder {
+public class Folder implements FileSystemItem {
 	private String name;
-	private List<File> files;
-	private List<Folder> subfolders;
+	private List<FileSystemItem> fileSystemItems;
 
 	public Folder(String name) {
 		this.name = name;
-		this.files = new ArrayList<>();
-		this.subfolders = new ArrayList<>();
+		this.fileSystemItems = new ArrayList<>();
 	}
 
-	public void addFile(File file) {
-		files.add(file);
+	public void addItem(FileSystemItem item) {
+		fileSystemItems.add(item);
 	}
 
-	public void addFolder(Folder folder) {
-		subfolders.add(folder);
+	@Override
+	public String getName() {
+		return name;
 	}
 
-	// Método para calcular o tamanho total da pasta
-	public int calculateTotalSize() {
+	@Override
+	public int getSize() {
 		int totalSize = 0;
-
-		// Adiciona o tamanho dos arquivos na pasta
-		for (File file : files) {
-			totalSize += file.getSize();
+		
+		for (FileSystemItem item: fileSystemItems) {
+			totalSize += item.getSize();
 		}
-
-		// Adiciona o tamanho de cada subpasta manualmente
-		for (Folder subfolder : subfolders) {
-			totalSize += subfolder.calculateTotalSize();
-		}
-
 		return totalSize;
 	}
-
+	
+	@Override
 	public void listContents() {
-		System.out.println("Contents of folder: " + name);
-		for (File file : files) {
-			System.out.println("File: " + file.getName() + " (" + file.getSize() + " bytes)");
-		}
-		for (Folder subfolder : subfolders) {
-			System.out.println("Subfolder: " + subfolder.name);
+		System.out.println("Folder: " + name);
+
+		for (FileSystemItem item: fileSystemItems) {
+			item.listContents();
 		}
 	}
-
 }

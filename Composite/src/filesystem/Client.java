@@ -11,20 +11,20 @@ public class Client {
 
 		// Criando subpasta
 		Folder subFolder = new Folder("Documents");
-		subFolder.addFile(file1);
+		subFolder.addItem(file1);
 
 		Folder images = new Folder("Images");
-		images.addFile(img1);
-		images.addFile(img2);
+		images.addItem(img1);
+		images.addItem(img2);
 		
 		// Criando pasta principal
 		Folder mainFolder = new Folder("Main");
-		mainFolder.addFolder(subFolder);
-		mainFolder.addFile(file2);
-		mainFolder.addFolder(images);
+		mainFolder.addItem(subFolder);
+		mainFolder.addItem(file2);
+		mainFolder.addItem(images);
 
 		// Calculando o tamanho total da pasta principal
-		System.out.println("Total size of the main folder: " + mainFolder.calculateTotalSize() + " bytes");
+		System.out.println("Total size of the main folder: " + mainFolder.getSize() + " bytes");
 
 		// Listando o conteúdo da pasta principal
 		mainFolder.listContents();
