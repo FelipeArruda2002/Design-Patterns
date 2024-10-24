@@ -7,13 +7,21 @@ public class Client {
         SupportRequest techRequest = new SupportRequest("technical", "System error");
         SupportRequest criticalRequest = new SupportRequest("critical", "Server down");
 
-        Level1Support level1 = new Level1Support();
-        Level2Support level2 = new Level2Support();
-        Level3Support level3 = new Level3Support();
+        Handler level1 = new Level1Support();
+        Handler level2 = new Level2Support();
+        Handler level3 = new Level3Support();
 
+        level1.setNext(level2);
+        level1.setNext(level3);
+       
+        System.out.println("Critical:");
+        level1.handleRequest(criticalRequest);
+        
+        System.out.println("Technical:");
+        level1.handleRequest(techRequest);
+        
+        System.out.println("Basic:");
         level1.handleRequest(basicRequest);
-        level2.handleRequest(techRequest);
-        level3.handleRequest(criticalRequest);
     }
 }
 
