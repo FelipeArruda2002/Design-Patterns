@@ -3,66 +3,53 @@ package userreporting;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class UserGroup {
-	
-	private List<User> users = new ArrayList<>();
+public class UserGroup implements UserCollection {
 
-	public void addUser(User user) {
-		users.add(user);
-	}
+    private List<User> users = new ArrayList<>();
 
-	// Método básico para obter usuários ativos
-	public List<User> getActiveUsers() {
-		List<User> activeUsers = new ArrayList<>();
-		for (User user : users) {
-			if (user.isActive()) {
-				activeUsers.add(user);
-			}
-		}
-		return activeUsers;
-	}
+    public void addUser(User user) {
+        users.add(user);
+    }
 
-	// Funcionalidade 1: Contador de usuários ativos
-	public int getActiveUserCount() {
-		int count = 0;
-		for (User user : users) {
-			if (user.isActive()) {
-				count++;
-			}
-		}
-		return count;
-	}
+    public void deactivateUser(String userName) {
+        for (User user : users) {
+            if (user.getName().equals(userName)) {
+                user.deactivate();
+                break;
+            }
+        }
+    }
 
-	// Funcionalidade 2: Filtro por prefixo de nome
-	public List<User> getActiveUsersStartingWith(String prefix) {
-		List<User> filteredUsers = new ArrayList<>();
-		for (User user : users) {
-			if (user.isActive() && user.getName().startsWith(prefix)) {
-				filteredUsers.add(user);
-			}
-		}
-		return filteredUsers;
-	}
+    public int getActiveUserCount() {
+        return (int) users.stream().filter(User::isActive).count();
+    }
 
-	// Funcionalidade 3: Listar usuários ativos criados antes de uma data
-	public List<User> getActiveUsersCreatedBefore(LocalDate date) {
-		List<User> filteredUsers = new ArrayList<>();
-		for (User user : users) {
-			if (user.isActive() && user.getCreationDate().isBefore(date)) {
-				filteredUsers.add(user);
-			}
-		}
-		return filteredUsers;
-	}
+    public List<User> getActiveUsers() {
+        return users.stream().filter(User::isActive).collect(Collectors.toList());
+    }
 
-	// Funcionalidade 4: Desativar usuário por nome
-	public void deactivateUser(String userName) {
-		for (User user : users) {
-			if (user.getName().equals(userName)) {
-				user.deactivate();
-				break;
-			}
-		}
-	}
+    public List<User> getActiveUsersStartingWith(String prefix) {
+        return getActiveUsers().stream()
+                .filter(user -> user.getName().startsWith(prefix))
+                .collect(Collectors.toList());
+    }
+
+    public List<User> getActiveUsersCreatedBefore(LocalDate date) {
+        return getActiveUsers().stream()
+                .filter(user -> user.getCreationDate().isBefore(date))
+                .collect(Collectors.toList());
+    }
+
+    // Método para fornecer acesso à lista de usuários para o iterador
+    @Override
+	public List<User> getUsers() {
+        return users;
+    }
+
+    @Override
+    public Iterator<User> createIterator() {
+        return new UserIterator(this);
+    }
 }
