@@ -6,18 +6,16 @@ import java.util.Map;
 public class UserRepository {
 	
     private Map<String, String> users = new HashMap<>();
-    private AccessManager accessManager;
-    private Logger logger;
+    private AccessControlMediator mediator; 
 
-    public UserRepository(AccessManager accessManager, Logger logger) {
-        this.accessManager = accessManager;
-        this.logger = logger;
-    }
+    public UserRepository(AccessControlMediator mediator) {
+		this.mediator = mediator;
+	}
 
-    public void addUser(String username, String role) {
+	public void addUser(String username, String role) {
         users.put(username, role);
-        logger.log("User added: " + username);
-        accessManager.grantAccess(username, role);
+        mediator.showLog("User added: " + username);
+        mediator.grantAccess(username, role);
     }
 
     public boolean userExists(String username) {
