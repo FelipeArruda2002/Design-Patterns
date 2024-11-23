@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class UserRegistry {
+	
     private Map<String, Set<String>> roomSubscribers = new HashMap<>();
 
     public void subscribeUser(String roomName, String username) {
@@ -15,5 +16,6 @@ public class UserRegistry {
     public Set<String> getSubscribers(String roomName) {
         return roomSubscribers.getOrDefault(roomName, new HashSet<>());
     }
+
 }
 
