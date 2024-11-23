@@ -4,22 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigurationManager {
-    private Map<String, String> configurations = new HashMap<>();
 
-    public void setConfiguration(String key, String value) {
-        configurations.put(key, value);
-    }
+	private Map<String, String> configurations = new HashMap<>();
 
-    public void removeConfiguration(String key) {
-        configurations.remove(key);
-    }
+	public void setConfiguration(String key, String value) {
+		configurations.put(key, value);
+	}
 
-    public Map<String, String> getConfigurations() {
-        return new HashMap<>(configurations);
-    }
+	public void removeConfiguration(String key) {
+		configurations.remove(key);
+	}
 
-    public void printConfigurations() {
-        System.out.println("Current Configurations: " + configurations);
-    }
+	public Map<String, String> getConfigurations() {
+		return new HashMap<>(configurations);
+	}
+
+	public void printConfigurations() {
+		System.out.println("Current Configurations: " + configurations);
+	}
+
+	public ConfigurationMemento save() {
+		return new ConfigurationMemento(new HashMap<>(configurations));
+	}
+
+	public void restore(ConfigurationMemento memento) {
+		this.configurations = memento.getConfigurations();
+	}
+
 }
-
