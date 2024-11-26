@@ -4,31 +4,39 @@ import java.util.Stack;
 
 public class OrderHistory {
 
-	private Order order;
-    private Stack<String> history;
+    private Stack<OrderSnapshot> undoStack;
+    private Stack<OrderSnapshot> redoStack;
 
-    public OrderHistory(Order order) {
-        this.order = order;
-        history = new Stack<>();
+    public OrderHistory() {
+        undoStack = new Stack<>();
+        redoStack = new Stack<>();
     }
 
     // Método para salvar o estado do pedido
-    public void saveState() {
-        history.push(order.getOrderDetails());
+    public void saveState(Order order) {
+        undoStack.push(order.save());
+        redoStack.clear();
     }
 
     // Método para desfazer (reverter para o estado anterior)
-    public void undo() {
-        if (!history.isEmpty()) {
-            String previousState = history.pop();
-            System.out.println("Undo: Restoring order to: " + previousState);
+    public void undo(Order order) {
+        if (!undoStack.isEmpty()) {
+            OrderSnapshot snapshot = undoStack.pop();
+            redoStack.add(snapshot);
+            order.restore(snapshot);
+            System.out.println("Undo: Restoring order to: " + snapshot.getSnapshotDetails());
         } else {
             System.out.println("No previous state to undo.");
         }
     }
-
     // Método para refazer (não implementado corretamente, pois não usamos Memento)
-    public void redo() {
-        System.out.println("Redo functionality not implemented yet.");
+    public void redo(Order order) {
+        if (!redoStack.isEmpty()) {
+        	OrderSnapshot snapshot = redoStack.pop();
+            order.restore(snapshot); 
+        	System.out.println("Redo: Restoring order to: " + snapshot.getSnapshotDetails());
+        } else {
+        	System.out.println("No previous state to redo.");
+        }
     }
 }

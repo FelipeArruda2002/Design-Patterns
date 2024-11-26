@@ -1,19 +1,37 @@
 package orderhistory;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public class OrderSnapshot {
-	
-    private List<String> items;
-    private String status;
+public class OrderSnapshot implements Snapshot {
 
-    public OrderSnapshot(List<String> items, String status) {
-        this.items = items;
-        this.status = status;
-    }
+	private List<String> items;
+	private String status;
+	private LocalDate createdDate;
 
-    public String getSnapshotDetails() {
-        return "Status: " + status + ", Items: " + items.toString();
-    }
+	public OrderSnapshot(List<String> items, String status, LocalDate createdDate) {
+		this.items = new ArrayList<>(items);
+		this.status = status;
+		this.createdDate = createdDate;
+	}
+
+	public List<String> getItems() {
+		return items;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	@Override
+	public String getSnapshotDetails() {
+		return "Status: " + status + ", Items: " + items.toString();
+	}
+
+	@Override
+	public LocalDate getCreateDate() {
+		return createdDate;
+	}
+
 }
-

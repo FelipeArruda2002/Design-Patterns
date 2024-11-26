@@ -1,5 +1,6 @@
 package orderhistory;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,13 @@ public class Order {
     }
 
     // Método para salvar o estado do pedido (sem usar Memento)
-    public void save() {
-        // Implemente a lógica de salvar o estado do pedido, mas sem usar o padrão Memento
+    public OrderSnapshot save() {
         System.out.println("Saving current order: " + getOrderDetails());
+        return new OrderSnapshot(items, status, LocalDate.now());
+    }
+    
+    public void restore(OrderSnapshot orderSnapshot) {
+    	this.items = orderSnapshot.getItems();
+    	this.status = orderSnapshot.getStatus();
     }
 }
