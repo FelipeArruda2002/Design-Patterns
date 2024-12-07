@@ -1,28 +1,29 @@
 package documentprocessing;
 
-public abstract class Document {
-	
- private String title;
- private String status;
+public abstract class Document extends Publisher {
 
- public Document(String title, String status) {
-     this.title = title;
-     this.status = status;
- }
+	private String title;
+	private String status;
 
- public String getTitle() {
-     return title;
- }
+	public Document(String title, String status) {
+		this.title = title;
+		this.status = status;
+	}
 
- public String getStatus() {
-     return status;
- }
+	public String getTitle() {
+		return title;
+	}
 
- public void setStatus(String status) {
-     this.status = status;
-     // Lógica de notificação será implementada posteriormente
- }
+	public String getStatus() {
+		return status;
+	}
 
- public abstract void process();
+	public void setStatus(String status) {
+		this.status = status;
+
+		notifySubscribers(this);
+	}
+
+	public abstract void process();
+
 }
-

@@ -2,19 +2,23 @@ package documentprocessing;
 
 public class Main {
     public static void main(String[] args) {
-        // Criando instâncias de documentos
+        AuditSystem auditSystem = new AuditSystem();
+        NotificationSystem notificationSystem = new NotificationSystem();
+    	
+    	// Criando instâncias de documentos
         Document financialReport = new FinancialReport("Relatório Financeiro - Q3", "Em análise");
+        
         Document meetingMinutes = new MeetingMinutes("Ata da Reunião do Conselho", "Em revisão");
+        meetingMinutes.addSubscriber(notificationSystem);
+        
         Document contract = new Contract("Contrato de Prestação de Serviços", "Pendente de assinatura");
-
+        contract.addSubscriber(auditSystem);
         // Processando os documentos
         financialReport.process();
         System.out.println("Status do documento: " + financialReport.getTitle() + " -> " + financialReport.getStatus());
 
         meetingMinutes.process();
-        System.out.println("Status do documento: " + meetingMinutes.getTitle() + " -> " + meetingMinutes.getStatus());
 
         contract.process();
-        System.out.println("Status do documento: " + contract.getTitle() + " -> " + contract.getStatus());
     }
 }
