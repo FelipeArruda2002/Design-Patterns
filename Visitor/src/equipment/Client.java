@@ -8,9 +8,9 @@ public class Client {
         manager.addEquipment(new ElectricalEquipment("Generator", 5000));
         manager.addEquipment(new MechanicalEquipment("Lathe", 2000));
         manager.addEquipment(new HydraulicEquipment("Pump", 150));
+        manager.addEquipment(new ElectricalEquipment("Generator 2", 2500));
 
         // Calculando estatísticas
-        manager.calculateStatistics(); // Método inicial antes da aplicação do Visitor
+        manager.calculateStatistics();
     }
 }
-

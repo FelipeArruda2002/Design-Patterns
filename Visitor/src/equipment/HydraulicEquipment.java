@@ -11,4 +11,9 @@ public class HydraulicEquipment extends Equipment {
     public double getFlowRate() {
         return flowRate;
     }
+
+	@Override
+	void accept(EquipmentVisitor equipmentVisitor) {
+		equipmentVisitor.visit(this);
+	}
 }

@@ -11,4 +11,9 @@ public class MechanicalEquipment extends Equipment {
 	public double getMaintenanceCost() {
 		return maintenanceCost;
 	}
+
+	@Override
+	void accept(EquipmentVisitor equipmentVisitor) {
+		equipmentVisitor.visit(this);
+	}
 }

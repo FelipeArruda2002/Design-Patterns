@@ -11,4 +11,9 @@ public class ElectricalEquipment extends Equipment {
     public double getEnergyConsumption() {
         return energyConsumption;
     }
+
+	@Override
+	void accept(EquipmentVisitor equipmentVisitor) {
+		equipmentVisitor.visit(this);
+	}
 }

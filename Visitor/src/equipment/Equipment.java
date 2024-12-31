@@ -10,6 +10,6 @@ abstract class Equipment {
     public String getName() {
         return name;
     }
+    
+    abstract void accept(EquipmentVisitor equipmentVisitor);
 }
-
-
