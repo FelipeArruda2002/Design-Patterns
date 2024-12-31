@@ -17,4 +17,14 @@ public class Folder extends FileSystemElement {
     public List<FileSystemElement> getChildren() {
         return children;
     }
+
+	@Override
+	void accept(CalculatorVisitor visitorFileSystem) {
+		visitorFileSystem.visit(this);
+	}
+
+	@Override
+	void accept(PrinterVisitor printerVisitor) {
+		printerVisitor.visit(this);
+	}
 }

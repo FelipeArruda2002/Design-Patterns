@@ -20,45 +20,14 @@ public class Client {
         root.addElement(pictures);
 
         // Calculando o tamanho total do sistema de arquivos
-        int totalSize = calculateSize(root);
-        System.out.println("Tamanho total do sistema de arquivos: " + totalSize + " KB");
+        SizeCalculatorVisitor calculatorVisitor = new SizeCalculatorVisitor();
+        root.accept(calculatorVisitor);
+        System.out.println("Tamanho total do sistema de arquivos: " + calculatorVisitor.getSize() + " KB");
 
         // Exibindo a estrutura hierárquica
         System.out.println("\nEstrutura do sistema de arquivos:");
-        printStructure(root, 0);
+        StructurePrinterVisitor structurePrinterVisitor = new StructurePrinterVisitor();
+        root.accept(structurePrinterVisitor);
     }
 
-    // Método para calcular o tamanho total da pasta
-    private static int calculateSize(Folder folder) {
-        int size = 0;
-        for (FileSystemElement element : folder.getChildren()) {
-            if (element instanceof File) {
-                size += ((File) element).getSize();
-            } else if (element instanceof Folder) {
-                size += calculateSize((Folder) element);
-            }
-        }
-        return size;
-    }
-
-    // Método para imprimir a estrutura hierárquica
-    private static void printStructure(Folder folder, int level) {
-        printIndent(level);
-        System.out.println(folder.getName() + "/");
-        for (FileSystemElement element : folder.getChildren()) {
-            if (element instanceof File) {
-                printIndent(level + 1);
-                System.out.println(element.getName());
-            } else if (element instanceof Folder) {
-                printStructure((Folder) element, level + 1);
-            }
-        }
-    }
-
-    // Método auxiliar para indentação
-    private static void printIndent(int level) {
-        for (int i = 0; i < level; i++) {
-            System.out.print("  ");
-        }
-    }
 }

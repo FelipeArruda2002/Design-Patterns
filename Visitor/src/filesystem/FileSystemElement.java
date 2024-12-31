@@ -10,6 +10,9 @@ public abstract class FileSystemElement {
     public String getName() {
         return name;
     }
+    
+    abstract void accept(CalculatorVisitor visitorFileSystem);
+    abstract void accept(PrinterVisitor printerVisitor);
 }
 
 

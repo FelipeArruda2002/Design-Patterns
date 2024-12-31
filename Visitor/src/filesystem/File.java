@@ -11,4 +11,14 @@ public class File extends FileSystemElement {
     public int getSize() {
         return size;
     }
+
+	@Override
+	void accept(CalculatorVisitor visitorFileSystem) {
+		visitorFileSystem.visit(this);
+	}
+
+	@Override
+	void accept(PrinterVisitor printerVisitor) {
+		printerVisitor.visit(this);
+	}
 }
